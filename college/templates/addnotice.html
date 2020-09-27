@@ -1,0 +1,31 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <h2 style="margin-top:20px" align="center">ADD NEW NOTICE</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:10%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Title</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title" placeholder="Enter Title">
+  </div>
+
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="desc" rows="3"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="width:100%">Submit</button>
+
+</form>
+</div>
+</div>
+{% if error %}
+<script>
+    alert('Add Notice Successfully');
+    window.location="{% url 'noticedetail' %}";
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+{% if error %}
+<script>
+    alert('Document uploaded successfully');
+    window.location="{% url 'userhome' %}";
+</script>
+{% endif %}
+{% ifequal document "not" %}
+{% ifequal stu.status.status "Accept" %}
+<h2 style="margin-top:20px" align="center">Upload Document</h2><hr>
+<div class="container">
+<form method="post" action="" style="width:96%;margin-top:5%" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputEmail4">Transfer Certificate(TC)</label>
+      <input type="file" class="form-control" value="choose image" name="tc" id="inputEmail4">
+    </div>
+</div>
+
+    <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputEmail4">10th Marksheet</label>
+      <input type="file" class="form-control" value="choose image" name="m10" id="inputEmail4">
+    </div>
+</div>/
+
+    <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputEmail4">12th Marksheet</label>
+      <input type="file" class="form-control" value="choose image" name="m12" id="inputEmail4">
+    </div>
+</div>
+
+    <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputEmail4">Graduation Certificate(if any)</label>
+      <input type="file" class="form-control" value="choose image" name="gc" id="inputEmail4">
+    </div>
+</div>
+
+ <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputEmail4">Post Graduation Certificate(if any)</label>
+      <input type="file" class="form-control" value="choose image" name="pg" id="inputEmail4">
+    </div>
+</div>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-bottom:10%">Submit</button>
+</form>
+</div>
+{% endifequal %}
+{% else %}
+{% ifequal stu.status.status "Accept" %}
+<p style="color:red;margin-top:4%" align="center">Document is already uploaded</p>
+<div  class="container-fluid">
+<hr><div class="row">
+        <div class="col-md-6">
+            <strong>10th certificate:</strong>
+        </div>
+        <div class="col-md-6">
+            <a href="{{udata.tc.url}}">View File</a>
+        </div>
+    </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>10th Marksheet:</strong>
+        </div>
+        <div class="col-md-6">
+            <a href="{{udata.mark10.url}}">View File</a>
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>12th Marksheet:</strong>
+        </div>
+        <div class="col-md-6">
+            <a href="{{udata.mark12.url}}">View File</a>
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Gradution certificate:</strong>
+        </div>
+        <div class="col-md-6">
+            {% if udata.g_certificate %}
+            <a href="{{udata.g_certificate.url}}">View File</a>
+            {% endif %}
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Post Graduation certificate :</strong>
+        </div>
+        <div class="col-md-6">
+            {% if udata.pg_certificate %}
+            <a href="{{udata.pg_certificate.url}}">View File</a>
+            {% endif %}
+        </div>
+    </div><hr>
+</div>
+{% endifequal %}
+{% endifequal %}
+{% ifequal stu.status.status "pending" %}
+<div  class="container-fluid">
+    <div class="row" style="margin-top:10%">
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+            <a href="#"><u>You have not Able to Upload Document.Status is pending.</u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+    </div>
+</div>
+        {% endifequal %}
+
+{% ifequal stu.status.status "Reject" %}
+<div  class="container-fluid">
+    <div class="row" style="margin-top:10%">
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+            <a href="#"><u>You have not Able to Upload Document.Status is Rejected.</u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+    </div>
+</div>
+        {% endifequal %}
+
+{% if not stu %}
+<div  class="container-fluid">
+    <div class="row" style="margin-top:10%">
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+            <a href="#"><u>You have not Able to Upload Document.Please fill Admission Form.</u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+    </div>
+</div>
+        {% endif %}
+{% endblock %}

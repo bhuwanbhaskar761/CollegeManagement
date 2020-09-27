@@ -1,0 +1,45 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .container{
+    border-radius:6px;
+    margin:2%;
+    }
+    .container-fluid{
+    margin-top:5%;
+    }
+</style>
+<center><h2 style="color:red;margin-top:4%">View Course Detail</h2></center>
+<div  class="container-fluid">
+    <center>
+    <div class="container">
+        <table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Course Name</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in data %}
+  <tr>
+
+    <td>{{i.id}}</td>
+    <td>{{i.c_name}}</td>
+
+    <td><a href="{% url 'delete_course' i.id %}"><button class="button button1">delete</button></a></td>
+  </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+ </div></center>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .container{
+    border-radius:6px;
+    margin:2%;
+    }
+    .container-fluid{
+    margin-top:10%;
+    }
+</style>
+<div  class="container-fluid">
+    <div class="row">
+        {% ifequal error "ad not" %}
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+
+
+            <a href="{% url 'admission' %}"><u>You have not applied for addmision.Please fill the addmision form.</u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+        {% endifequal %}
+        {% ifequal error "ad" %}
+        {% ifequal stu.status.status "pending" %}
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+
+
+            <a href="{% url 'viewdetail' request.user.id %}"><u>Your application has been pending.</u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+        {% endifequal %}
+        {% ifequal stu.status.status "Accept" %}
+
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+
+
+            <a href="{% url 'viewdetail' request.user.id %}"><u>Your application has been selected.</u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+        {% endifequal %}
+
+        {% ifequal stu.status.status "Reject" %}
+
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+            <a href="{% url 'admission' %}"><u>Your application has beed Reject.Again Fill Admission Form. </u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+        {% endifequal %}
+
+        {% if not upload %}
+        {% ifequal stu.status.status "Accept" %}
+        <div class="col-md-12">
+        <div class="container p-3 my-3 border">
+            <a href="{% url 'upload_doc' %}"><u>You application has beed selected.Please Upload Your Documents.</u></a><br>
+                <button class="btn btn-primary" style="width:100%"></button>
+            </div>
+        </div>
+        {% endifequal %}
+        {% endif %}
+        {% endifequal %}
+
+</div>
+</div>
+{% endblock %}

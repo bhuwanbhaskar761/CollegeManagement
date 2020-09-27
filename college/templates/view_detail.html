@@ -1,0 +1,248 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+<div  class="container-fluid">
+
+    {% if request.user.is_staff %}
+
+    {% else %}
+    <h5 style="color:red;margin-top:5%" align="center">Your application form is already submitted.</h5>
+    {% endif %}
+    <hr><div class="row">
+        <div class="col-md-6">
+            <strong>Course Applied:</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.course.c_name}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Student Pic:</strong>
+        </div>
+        <div class="col-md-6">
+           <img src="{{stu.image.url}}" style="width:150px;height:150px">
+        </div>
+
+    </div><hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Father's Name:</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.f_name}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Mother's Name :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.m_name}}
+        </div>
+     </div><hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>DOB :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.birth}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Nationality :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.nationality}}
+        </div>
+     </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>Gender :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.gen}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Category :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.cat.cat}}
+        </div>
+     </div><hr>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Correspondance Address :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.add1}}
+        </div>
+    </div><hr>
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Permanant Address :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.add2}}
+        </div>
+     </div><hr>
+    <div class="row">
+        <div class="col-md-4">
+            <strong>Class</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>Board/University</strong>
+        </div>
+    
+        <div class="col-md-2">
+           <strong>Year</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>Percent</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>Stream</strong>
+        </div>
+     </div>
+     <hr><div class="row">
+        <div class="col-md-4">
+            <strong>10th(Secondary)</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{quali10.board}}</strong>
+        </div>
+
+        <div class="col-md-2">
+           <strong>{{quali10.year}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{quali10.percent}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{quali10.stream}}</strong>
+        </div>
+     </div>
+     <hr><div class="row">
+        <div class="col-md-4">
+            <strong>12th(Senior secondary)</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{quali12.board}}</strong>
+        </div>
+
+        <div class="col-md-2">
+           <strong>{{quali12.year}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{quali12.percent}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{quali12.stream}}</strong>
+        </div>
+     </div>
+     <hr><div class="row">
+        <div class="col-md-4">
+            <strong>Graduation</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{qualig.board}}</strong>
+        </div>
+
+        <div class="col-md-2">
+           <strong>{{qualig.year}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{qualig.percent}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{qualig.stream}}</strong>
+        </div>
+     </div>
+     <hr><div class="row">
+        <div class="col-md-4">
+            <strong>Post Graduation</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{qualipg.board}}</strong>
+        </div>
+
+        <div class="col-md-2">
+           <strong>{{qualipg.year}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{qualipg.percent}}</strong>
+        </div>
+        <div class="col-md-2">
+            <strong>{{qualipg.stream}}</strong>
+        </div>
+     </div>
+     <hr>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="row">
+        <div class="col-md-6">
+            <strong>Admin Remark :</strong>
+        </div>
+        <div class="col-md-6">
+            {% if request.user.is_staff %}
+            {% ifequal stu.status.status "pending" %}
+        <input type="text" name="rem" style="width:70%;border-radius:6px">
+            {% endifequal %}
+            {{stu.rem}}
+            {% endif %}
+            {% if not request.user.is_staff %}
+            {{stu.rem}}
+            {% endif %}
+        </div>
+    </div><hr>
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Admin Status :</strong>
+        </div>
+        <div class="col-md-6">
+            {% if request.user.is_staff %}
+            {% ifequal stu.status.status "pending" %}
+        <select name="stat" style="width:70%;border-radius:6px">
+            {% for i in stat1 %}
+            <option value="{{i.status}}">{{i.status}}</option>
+            {% endfor %}
+        </select>
+            {% endifequal %}
+            {{stu.status.status}}
+            {% endif %}
+            {% if not request.user.is_staff %}
+                        {{stu.status.status}}
+            {% endif %}
+        </div>
+    </div><hr>
+{% if request.user.is_staff %}
+        {% ifequal stu.status.status "pending" %}
+        <div class="row">
+        <div class="col-md-12">
+            <input type="submit" value="Update" style="width:20%;border-radius:6px;margin-left:40%">
+        </div>
+    </div><hr>
+        {% endifequal %}
+        {% endif %}
+</form>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Admin Remark Date :</strong>
+        </div>
+        <div class="col-md-6">
+            {{stu.rem_date}}
+        </div>
+    </div><hr>
+
+
+
+<p><span style="color:red">Declaration </span>: I hereby state that the facts mentioned above are true to the best of my knowledge and belief.</p>
+    ({{request.user.username}})
+</div>
+
+{% endblock %}

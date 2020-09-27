@@ -1,0 +1,26 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <h2 style="margin-top:20px" align="center">ADD NEW COURSE</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:10%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Course Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="course" placeholder="Enter Course name">
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="width:100%">Submit</button>
+
+</form>
+</div>
+</div>
+{% if error %}
+<script>
+    alert('Add Course Successfully');
+    window.location="{% url 'coursedetail' %}";
+</script>
+{% endif %}
+{% endblock %}

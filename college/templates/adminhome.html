@@ -1,0 +1,66 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .container{
+    border-radius:6px;
+    margin:2%;
+    }
+    .container-fluid{
+    margin-top:10%;
+    }
+</style>
+<div  class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        <a href="{% url 'coursedetail' %}"><div class="container p-3 my-3 border">
+
+                <span style="font-size:40px">{{course1}}</span><br>
+                Listed Courses<br>
+                <button class="btn btn-primary" style="width:100%"></button>
+        </div></a>
+        </div>
+    <div class="col-md-4">
+        <a href="{% url 'userdetail' %}"><div class="container p-3 my-3 border">
+
+                <span style="font-size:40px">{{student}}</span><br>
+                Total Users<br>
+                <button class="btn btn-primary" style="width:100%"></button>
+        </div></a>
+        </div>
+ <div class="col-md-4">
+        <a href="#"><div class="container p-3 my-3 border">
+                <span style="font-size:40px">{{application}}</span><br>
+                Total Application<br>
+                <button class="btn btn-primary" style="width:100%"></button>
+        </div></a>
+        </div>
+        </div>
+<div class="row">
+     <div class="col-md-4">
+        <a href="{% url 'view_application' 'pending' %}"><div class="container p-3 my-3 border">
+                <span style="font-size:40px">{{pending}}</span><br>
+                Pending Application<br>
+                <button class="btn btn-primary" style="width:100%"></button>
+        </div></a>
+        </div>
+ <div class="col-md-4">
+        <a href="{% url 'view_application' 'Accept' %}"><div class="container p-3 my-3 border">
+                <span style="font-size:40px">{{accept}}</span><br>
+                Selected Application<br>
+                <button class="btn btn-primary" style="width:100%"></button>
+        </div></a>
+        </div>
+ <div class="col-md-4">
+        <a href="{% url 'view_application' 'Reject' %}"><div class="container p-3 my-3 border">
+                <span style="font-size:40px">{{reject}}</span><br>
+                Rejected Application<br>
+                <button class="btn btn-primary" style="width:100%"></button>
+        </div></a>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<h2 style="margin-top:20px" align="center">Upload Document</h2><hr>
+
+<div  class="container-fluid">
+<hr><div class="row">
+        <div class="col-md-6">
+            <strong>10th certificate:</strong>
+        </div>
+        <div class="col-md-6">
+            <a href="{{udata.tc.url}}">View File</a>
+        </div>
+    </div><hr><div class="row">
+        <div class="col-md-6">
+            <strong>10th Marksheet:</strong>
+        </div>
+        <div class="col-md-6">
+            <a href="{{udata.mark10.url}}">View File</a>
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>12th Marksheet:</strong>
+        </div>
+        <div class="col-md-6">
+            <a href="{{udata.mark12.url}}">View File</a>
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Gradution certificate:</strong>
+        </div>
+        <div class="col-md-6">
+            {% if udata.g_certificate %}
+            <a href="{{udata.g_certificate.url}}">View File</a>
+            {% endif %}
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Post Graduation certificate :</strong>
+        </div>
+        <div class="col-md-6">
+            {% if udata.pg_certificate %}
+            <a href="{{udata.pg_certificate.url}}">View File</a>
+            {% endif %}
+        </div>
+    </div><hr>
+</div>
+
+{% endblock %}

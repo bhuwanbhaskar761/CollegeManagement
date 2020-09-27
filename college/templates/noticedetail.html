@@ -1,0 +1,49 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<style>
+    .container{
+    border-radius:6px;
+    margin:2%;
+    }
+    .container-fluid{
+    margin-top:5%;
+    }
+</style>
+<center><h2 style="color:red;margin-top:4%">View Notice Detail</h2></center>
+<div  class="container-fluid">
+    <center>
+    <div class="container">
+        <table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Creation Date</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in data %}
+  <tr>
+
+    <td>{{i.id}}</td>
+    <td>{{i.title}}</td>
+    <td>{{i.desc}}</td>
+    <td>{{i.Date1}}</td>
+
+    <td><a href="{% url 'delete_notice' i.id %}"><button class="button button1">delete</button></a></td>
+  </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+ </div></center>
+
+
+</div>
+
+{% endblock %}
